@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 
+type Emits = {
+  (e: 'endDrawing', base64Img: string): void
+}
 type Point = {
   x: number
   y: number
 }
 
+const emits = defineEmits<Emits>()
 const canvasRef = ref<HTMLCanvasElement>()
 const canvasCtx = ref<CanvasRenderingContext2D | null>(null)
 const startPoint = ref<Point | null>(null)
@@ -29,6 +33,7 @@ const draw = (e: MouseEvent) => {
 }
 const endDrawing = () => {
   startPoint.value = null
+  emits('endDrawing', canvasRef.value!.toDataURL('image/png'))
 }
 
 watchEffect(() => {
