@@ -10,7 +10,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
   const res = await axios.post('http://localhost:8000/images/', {
     image_base64: base64Img,
   })
-  return res
+  alert(res.data)
 }
 </script>
 
