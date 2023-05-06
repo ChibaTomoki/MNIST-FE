@@ -40,17 +40,17 @@ watchEffect(() => {
   if (!canvasRef.value) return
 
   canvasCtx.value = canvasRef.value.getContext('2d')
-  canvasCtx.value!.lineWidth = 10
+  canvasCtx.value!.lineWidth = 5
   canvasCtx.value!.fillStyle = '#fff'
-  canvasCtx.value!.fillRect(0, 0, 140, 140)
+  canvasCtx.value!.fillRect(0, 0, 160, 160)
 })
 </script>
 
 <template>
   <canvas
     ref="canvasRef"
-    height="140"
-    width="140"
+    height="160"
+    width="160"
     class="canvas"
     @mousedown="startDrawing"
     @mousemove="draw"
@@ -61,7 +61,7 @@ watchEffect(() => {
 <style scoped>
 .canvas {
   border: solid 1px;
-  height: 140px;
-  width: 140px;
+  height: 160px;
+  width: 160px;
 }
 </style>

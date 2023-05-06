@@ -10,7 +10,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
   const res = await axios.post('http://localhost:8000/analyze-images/', {
     image_base64: base64Img,
   })
-  alert(res.data)
+  alert(`結果: ${res.data.num}\n確率: ${res.data.prob}`)
 }
 </script>
 
@@ -22,7 +22,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
       }
     "
   />
-  <button @click="postBase64CanvasImg(base64CanvasImg)">POST</button>
+  <button @click="postBase64CanvasImg(base64CanvasImg)">解析</button>
 </template>
 
 <style scoped></style>
