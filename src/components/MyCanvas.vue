@@ -27,10 +27,22 @@ const draw = (e: MouseEvent) => {
   canvasCtx.value.beginPath()
   canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
   canvasCtx.value.fill()
+  canvasCtx.value.beginPath()
+  canvasCtx.value.moveTo(startPoint.value.x, startPoint.value.y)
+  canvasCtx.value.lineTo(e.offsetX, e.offsetY)
+  canvasCtx.value.stroke()
+
   startPoint.value.x = e.offsetX
   startPoint.value.y = e.offsetY
 }
 const endDrawing = () => {
+  if (!canvasCtx.value) return
+  if (!startPoint.value) return
+
+  canvasCtx.value.beginPath()
+  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
+  canvasCtx.value.fill()
+
   startPoint.value = null
   emits('endDrawing', canvasRef.value!.toDataURL('image/png'))
 }
@@ -42,6 +54,7 @@ watchEffect(() => {
   canvasCtx.value!.fillStyle = '#fff'
   canvasCtx.value!.fillRect(0, 0, 160, 160)
   canvasCtx.value!.fillStyle = '#000'
+  canvasCtx.value!.lineWidth = 16
 })
 </script>
 
