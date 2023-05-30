@@ -46,6 +46,14 @@ const endDrawing = () => {
   startPoint.value = null
   emits('endDrawing', canvasRef.value!.toDataURL('image/png'))
 }
+const clearCanvas = () => {
+  if (!canvasCtx.value) return
+  canvasCtx.value!.fillStyle = '#fff'
+  canvasCtx.value!.fillRect(0, 0, 160, 160)
+  canvasCtx.value!.fillStyle = '#000'
+}
+
+defineExpose({ clearCanvas })
 
 watchEffect(() => {
   if (!canvasRef.value) return

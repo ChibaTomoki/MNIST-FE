@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import axios from 'axios'
 import MyCanvas from './components/MyCanvas.vue'
 
+const myCanvasRef = ref<InstanceType<typeof MyCanvas> | null>(null)
 const base64CanvasImg = ref<string | null>(null)
 const postBase64CanvasImg = async (base64Img: string | null) => {
   if (!base64Img) return
@@ -11,11 +12,14 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
     image_base64: base64Img,
   })
   alert(`結果: ${res.data.num}\n確率: ${Math.round(res.data.prob * 100)}%`)
+  if (!myCanvasRef.value) return
+  myCanvasRef.value.clearCanvas()
 }
 </script>
 
 <template>
   <MyCanvas
+    ref="myCanvasRef"
     @end-drawing="
       (base64Img) => {
         base64CanvasImg = base64Img
