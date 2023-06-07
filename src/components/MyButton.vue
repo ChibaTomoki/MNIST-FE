@@ -1,0 +1,46 @@
+<script setup lang="ts">
+type Props = {
+  title: string
+}
+type Emits = {
+  (e: 'onClick'): void
+}
+
+defineProps<Props>()
+const emits = defineEmits<Emits>()
+</script>
+
+<template>
+  <button @click="emits('onClick')">{{ title }}</button>
+</template>
+
+<style scoped lang="scss">
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color background-color 0.25s;
+}
+button:hover {
+  background-color: #2a2a2a;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  button {
+    background-color: #f9f9f9;
+  }
+  button:hover {
+    background-color: #e9e9e9;
+  }
+}
+
+</style>
