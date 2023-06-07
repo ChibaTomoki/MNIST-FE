@@ -75,6 +75,7 @@ watchEffect(() => {
     @mousedown="startDrawing"
     @mousemove="draw"
     @mouseup="endDrawing"
+    @mouseleave="endDrawing"
   />
 </template>
 

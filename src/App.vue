@@ -14,6 +14,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
   alert(`結果: ${res.data.num}\n確率: ${Math.round(res.data.prob * 100)}%`)
   if (!myCanvasRef.value) return
   myCanvasRef.value.clearCanvas()
+  // TODO: wait animationを出したい
 }
 </script>
 
