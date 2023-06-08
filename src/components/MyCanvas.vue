@@ -49,6 +49,8 @@ const drawByTouch = (e: TouchEvent) => {
   if (!startPoint.value) return
   if (!canvasOffset.value) return
 
+  e.preventDefault()
+
   canvasCtx.value.beginPath()
   canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
   canvasCtx.value.fill()
