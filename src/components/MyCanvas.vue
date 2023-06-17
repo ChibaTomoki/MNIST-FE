@@ -72,19 +72,21 @@ const drawByTouch = (e: TouchEvent) => {
 const endDrawing = () => {
   if (!canvasCtx.value) return
   if (!startPoint.value) return
+  if (!canvasRef.value) return
 
   canvasCtx.value.beginPath()
   canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, props.lineWidth / 2, 0, 2 * Math.PI)
   canvasCtx.value.fill()
 
   startPoint.value = null
-  emits('endDrawing', canvasRef.value!.toDataURL('image/png'))
+  emits('endDrawing', canvasRef.value.toDataURL('image/png'))
 }
 const clearCanvas = () => {
   if (!canvasCtx.value) return
-  canvasCtx.value!.fillStyle = '#fff'
-  canvasCtx.value!.fillRect(0, 0, 160, 160)
-  canvasCtx.value!.fillStyle = '#000'
+
+  canvasCtx.value.fillStyle = '#fff'
+  canvasCtx.value.fillRect(0, 0, 160, 160)
+  canvasCtx.value.fillStyle = '#000'
 }
 
 defineExpose({ clearCanvas })
@@ -93,11 +95,16 @@ watchEffect(() => {
   if (!canvasRef.value) return
 
   canvasCtx.value = canvasRef.value.getContext('2d')
-  canvasCtx.value!.fillStyle = '#fff'
-  canvasCtx.value!.fillRect(0, 0, 160, 160)
-  canvasCtx.value!.fillStyle = '#000'
-  canvasCtx.value!.lineWidth = props.lineWidth
+  if (!canvasCtx.value) return
+
+  canvasCtx.value.fillStyle = '#fff'
+  canvasCtx.value.fillRect(0, 0, 160, 160)
+  canvasCtx.value.fillStyle = '#000'
   canvasOffset.value = canvasRef.value.getBoundingClientRect()
+})
+watchEffect(() => {
+  if (!canvasCtx.value) return
+  canvasCtx.value.lineWidth = props.lineWidth
 })
 </script>
 
