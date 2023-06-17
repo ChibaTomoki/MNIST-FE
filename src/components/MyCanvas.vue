@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 
+type Props = {
+  lineWidth: 8 | 16 | 24
+}
 type Emits = {
   (e: 'endDrawing', base64Img: string): void
 }
@@ -9,6 +12,7 @@ type Point = {
   y: number
 }
 
+const props = defineProps<Props>()
 const emits = defineEmits<Emits>()
 const canvasRef = ref<HTMLCanvasElement>()
 const canvasCtx = ref<CanvasRenderingContext2D | null>(null)
@@ -34,7 +38,7 @@ const draw = (e: MouseEvent) => {
   if (!startPoint.value) return
 
   canvasCtx.value.beginPath()
-  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
+  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, props.lineWidth / 2, 0, 2 * Math.PI)
   canvasCtx.value.fill()
   canvasCtx.value.beginPath()
   canvasCtx.value.moveTo(startPoint.value.x, startPoint.value.y)
@@ -52,7 +56,7 @@ const drawByTouch = (e: TouchEvent) => {
   e.preventDefault()
 
   canvasCtx.value.beginPath()
-  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
+  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, props.lineWidth / 2, 0, 2 * Math.PI)
   canvasCtx.value.fill()
   canvasCtx.value.beginPath()
   canvasCtx.value.moveTo(startPoint.value.x, startPoint.value.y)
@@ -70,7 +74,7 @@ const endDrawing = () => {
   if (!startPoint.value) return
 
   canvasCtx.value.beginPath()
-  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, 8, 0, 2 * Math.PI)
+  canvasCtx.value.arc(startPoint.value.x, startPoint.value.y, props.lineWidth / 2, 0, 2 * Math.PI)
   canvasCtx.value.fill()
 
   startPoint.value = null
@@ -92,7 +96,7 @@ watchEffect(() => {
   canvasCtx.value!.fillStyle = '#fff'
   canvasCtx.value!.fillRect(0, 0, 160, 160)
   canvasCtx.value!.fillStyle = '#000'
-  canvasCtx.value!.lineWidth = 16
+  canvasCtx.value!.lineWidth = props.lineWidth
   canvasOffset.value = canvasRef.value.getBoundingClientRect()
 })
 </script>

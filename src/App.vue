@@ -5,10 +5,12 @@ import MyWaitAnimation from './components/MyWaitAnimation.vue'
 import MyCanvas from './components/MyCanvas.vue'
 import MyButton from './components/MyButton.vue'
 import MyDialog from './components/MyDialog.vue'
+import MySelect from './components/MySelect.vue'
 
 const myCanvasRef = ref<InstanceType<typeof MyCanvas> | null>(null)
 const myDialogRef = ref<InstanceType<typeof MyDialog> | null>(null)
 const base64CanvasImg = ref<string | null>(null)
+const lineWidth = ref<8 | 16 | 24>(16)
 const isLoading = ref(false)
 const analyzedResult = ref<{ number: number | null; probability: number | null }>({
   number: null,
@@ -39,15 +41,28 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
 
 <template>
   <MyWaitAnimation v-show="isLoading" />
-  <div>
+
+  <div class="canvas-group">
     <MyCanvas
       ref="myCanvasRef"
+      :line-width="lineWidth"
       @end-drawing="
         (base64Img) => {
           base64CanvasImg = base64Img
         }
       "
     />
+    <div class="select-group">
+      <strong>線の太さ: </strong>
+      <MySelect
+        v-model.number="lineWidth"
+        :options="[
+          { value: 8, label: '細い' },
+          { value: 16, label: '普通' },
+          { value: 24, label: '太い' },
+        ]"
+      />
+    </div>
   </div>
   <div class="button-group">
     <MyButton title="解析" @on-click="postBase64CanvasImg(base64CanvasImg)" />
@@ -60,6 +75,15 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
 </template>
 
 <style scoped lang="scss">
+.canvas-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.select-group {
+  display: flex;
+  gap: 4px;
+}
 .button-group {
   display: flex;
   gap: 4px;
