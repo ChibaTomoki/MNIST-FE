@@ -41,8 +41,8 @@ dialog {
   border: 1px solid #aaa;
   border-radius: 4px;
 
-  ::backdrop {
-    background-color: gray;
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 .main {

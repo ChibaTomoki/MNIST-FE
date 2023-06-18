@@ -70,8 +70,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
     <MyButton title="クリア" @on-click="clearCanvas" />
   </div>
   <MyDialog ref="myDialogRef" @on-close="clearCanvas">
-    <p>結果: {{ analyzedResult.number }}</p>
-    <p>確率: {{ analyzedResult.probability }}%</p>
+    <p>判定結果: {{ analyzedResult.number }}</p>
   </MyDialog>
 </template>
 
