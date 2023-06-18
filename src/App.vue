@@ -53,7 +53,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
         }
       "
     />
-    <div class="select-group">
+    <div>
       <strong>線の太さ: </strong>
       <MySelect
         v-model.number="lineWidth"
@@ -80,10 +80,6 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
   display: flex;
   align-items: center;
   gap: 16px;
-}
-.select-group {
-  display: flex;
-  gap: 4px;
 }
 .button-group {
   display: flex;
