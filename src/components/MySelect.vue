@@ -31,5 +31,6 @@ const emitSelected = (e: Event): void => {
 select {
   padding: 4px;
   border-radius: 4px;
+  cursor: pointer;
 }
 </style>
