@@ -19,6 +19,7 @@ const emits = defineEmits<Emits>()
 
 <style scoped lang="scss">
 button {
+  color: inherit;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
