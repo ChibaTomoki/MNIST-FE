@@ -26,15 +26,12 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #f9f9f9;
+  background-color: #e8e8e8;
   cursor: pointer;
   transition: border-color background-color 0.25s;
-}
-button:hover {
-  background-color: #e9e9e9;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+  &:hover {
+    background-color: #d7d7d7;
+  }
 }
 </style>

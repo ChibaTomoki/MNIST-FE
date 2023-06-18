@@ -42,7 +42,6 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
 
 <template>
   <MyWaitAnimation v-show="isLoading" />
-
   <div class="canvas-group">
     <MyCanvas
       ref="myCanvasRef"
@@ -81,6 +80,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
   gap: 16px;
 }
 .button-group {
+  margin-top: 8px;
   display: flex;
   gap: 4px;
 }

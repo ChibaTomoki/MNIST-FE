@@ -38,8 +38,10 @@ defineExpose({ open })
 dialog {
   margin-top: 40px;
   padding: 0;
-  border: 1px solid #aaa;
+  border: 1px solid transparent;
   border-radius: 4px;
+  background-color: #fff;
+  color: #000;
 
   &::backdrop {
     background: rgba(0, 0, 0, 0.3);
