@@ -1,17 +1,20 @@
 <script setup lang="ts">
 type Props = {
   title: string
+  isDisabled: boolean
 }
 type Emits = {
   (e: 'onClick'): void
 }
 
-defineProps<Props>()
+withDefaults(defineProps<Props>(), {
+  isDisabled: false,
+})
 const emits = defineEmits<Emits>()
 </script>
 
 <template>
-  <button @click="emits('onClick')">{{ title }}</button>
+  <button @click="emits('onClick')" :disabled="isDisabled">{{ title }}</button>
 </template>
 
 <style scoped lang="scss">
@@ -42,5 +45,4 @@ button:focus-visible {
     background-color: #e9e9e9;
   }
 }
-
 </style>

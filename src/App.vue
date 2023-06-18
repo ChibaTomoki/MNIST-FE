@@ -20,6 +20,7 @@ const analyzedResult = ref<{ number: number | null; probability: number | null }
 const clearCanvas = () => {
   if (!myCanvasRef.value) return
   myCanvasRef.value.clearCanvas()
+  base64CanvasImg.value = null
 }
 const postBase64CanvasImg = async (base64Img: string | null) => {
   if (!base64Img) return
@@ -65,7 +66,7 @@ const postBase64CanvasImg = async (base64Img: string | null) => {
     </div>
   </div>
   <div class="button-group">
-    <MyButton title="解析" @on-click="postBase64CanvasImg(base64CanvasImg)" />
+    <MyButton @on-click="postBase64CanvasImg(base64CanvasImg)" title="解析" :is-disabled="!base64CanvasImg" />
     <MyButton title="クリア" @on-click="clearCanvas" />
   </div>
   <MyDialog ref="myDialogRef" @on-close="clearCanvas">
